@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthForm } from '../types';
 import useValidation from '../hooks/Vaildation';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { PostSignIn } from '../api/requests';
+import { Layout } from '../style/Layout';
+import { Title } from '../style/Common';
 
 interface Login {
   access_token?: string;
@@ -41,10 +43,10 @@ const SignIn = () => {
   };
 
   return (
-    <SignInContent>
-      <h1>Login</h1>
+    <Layout>
+      <Title>로그인</Title>
       <form className="form form__login">
-        <input
+        <Input
           type="text"
           data-testid="email-input"
           className="input width-100"
@@ -52,7 +54,7 @@ const SignIn = () => {
           value={form.email}
           onChange={e => setForm({ ...form, email: e.target.value })}
         />
-        <input
+        <Input
           type="password"
           data-testid="password-input"
           className="input width-100"
@@ -60,7 +62,7 @@ const SignIn = () => {
           value={form.password}
           onChange={e => setForm({ ...form, password: e.target.value })}
         />
-        <button
+        <Button
           data-testid="signin-button"
           disabled={isValid.isEmail && isValid.isPassword ? false : true}
           onClick={e => {
@@ -68,12 +70,70 @@ const SignIn = () => {
           }}
         >
           로그인
-        </button>
+        </Button>
       </form>
-    </SignInContent>
+    </Layout>
   );
 };
 
 export default SignIn;
 
-const SignInContent = styled.div``;
+const Wrapper = styled.div`
+  ${Layout}
+
+  button {
+    margin-top: 30px;
+  }
+`;
+
+const Input = styled.input`
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: white;
+  background-color: var(--dark-bg);
+  border-radius: 10px;
+
+  &::placeholder {
+    font-size: 14px;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--white);
+    -webkit-box-shadow: 0 0 0px 1000px var(--dark-bg) inset;
+    box-shadow: 0 0 0px 1000px var(--dark-bg) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  &:autofill,
+  &:autofill:hover,
+  &:autofill:focus,
+  &:autofill:active {
+    -webkit-text-fill-color: var(--white);
+    -webkit-box-shadow: 0 0 0px 1000px var(--dark-bg) inset;
+    box-shadow: 0 0 0px 1000px var(--dark-bg) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+`;
+
+const Button = styled.button`
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
+  background-color: var(--primary);
+  box-sizing: border-box;
+
+  ${props =>
+    props.disabled &&
+    css`
+      cursor: default;
+      background-color: var(--secondary);
+      color: #636777;
+    `}
+`;
