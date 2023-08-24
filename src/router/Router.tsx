@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from 'App';
 import SignUp from 'pages/SignUp';
 import SignIn from 'pages/SignIn';
+import ToDo from 'pages/ToDo';
 
 const Router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const Router = createBrowserRouter([
       },
       {
         path: 'todo',
-        element: 'todo',
+        element: <ToDo />,
       },
     ],
   },
