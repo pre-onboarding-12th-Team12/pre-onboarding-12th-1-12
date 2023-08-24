@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from 'App';
+import SignUp from 'pages/SignUp';
+import SignIn from 'pages/SignIn';
 
 const Router = createBrowserRouter([
   {
@@ -7,13 +9,16 @@ const Router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '',
-        element: 'Landing 혹은 Login',
+        path: '/',
+        element: 'Landing',
       },
-      // Landing이있다면 signin path 넣어주어야합니다.
       {
-        path: 'signup',
-        element: 'signup',
+        path: '/signin',
+        element: <SignIn />,
+      },
+      {
+        path: '/signup',
+        element: <SignUp />,
       },
       {
         path: 'todo',
