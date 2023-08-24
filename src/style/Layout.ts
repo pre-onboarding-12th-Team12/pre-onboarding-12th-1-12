@@ -1,6 +1,7 @@
 import { styled, css } from 'styled-components';
 
 const CommonStyle = css`
+  width: 500px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -12,11 +13,6 @@ const CommonStyle = css`
   margin: 0 auto;
 `;
 
-export const SignLayoutStyle = css`
+export const Layout = styled.div`
   ${CommonStyle}
-  width: 500px;
-`;
-
-export const SLayout = styled.div`
-  ${SignLayoutStyle}
 `;
