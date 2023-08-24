@@ -4,7 +4,7 @@ import { AuthForm } from '../types';
 import useValidation from '../hooks/Vaildation';
 import { css, styled } from 'styled-components';
 import { PostSignUp } from '../api/requests';
-import { SignLayoutStyle } from '../style/Layout';
+import { Layout } from '../style/Layout';
 import { Title } from '../style/Common';
 interface SignUpData {
   statusCode?: number;
@@ -39,8 +39,8 @@ const SignUp = () => {
   };
 
   return (
-    <Wrapper>
-      <Title>Sign up</Title>
+    <Layout>
+      <Title>회원가입</Title>
       <form className="form form__login">
         <Input
           type="text"
@@ -66,14 +66,14 @@ const SignUp = () => {
           회원가입
         </Button>
       </form>
-    </Wrapper>
+    </Layout>
   );
 };
 
 export default SignUp;
 
 const Wrapper = styled.div`
-  ${SignLayoutStyle}
+  ${Layout}
 
   button {
     margin-top: 30px;

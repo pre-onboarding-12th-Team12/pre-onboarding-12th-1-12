@@ -4,7 +4,7 @@ import { AuthForm } from '../types';
 import useValidation from '../hooks/Vaildation';
 import { css, styled } from 'styled-components';
 import { PostSignIn } from '../api/requests';
-import { SignLayoutStyle } from '../style/Layout';
+import { Layout } from '../style/Layout';
 import { Title } from '../style/Common';
 
 interface Login {
@@ -43,8 +43,8 @@ const SignIn = () => {
   };
 
   return (
-    <Wrapper>
-      <Title>Login</Title>
+    <Layout>
+      <Title>로그인</Title>
       <form className="form form__login">
         <Input
           type="text"
@@ -72,14 +72,14 @@ const SignIn = () => {
           로그인
         </Button>
       </form>
-    </Wrapper>
+    </Layout>
   );
 };
 
 export default SignIn;
 
 const Wrapper = styled.div`
-  ${SignLayoutStyle}
+  ${Layout}
 
   button {
     margin-top: 30px;
