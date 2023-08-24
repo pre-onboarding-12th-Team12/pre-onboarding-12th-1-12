@@ -1,13 +1,14 @@
 import React from 'react';
-import './App.css';
 import { Outlet } from 'react-router-dom';
+import GlobalStyle from 'GlobalStyle';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <>
+      <GlobalStyle />
       <Outlet />
-    </div>
+    </>
   );
-}
+};
 
 export default App;
