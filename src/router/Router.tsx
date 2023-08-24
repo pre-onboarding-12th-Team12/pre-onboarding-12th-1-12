@@ -4,7 +4,6 @@ import Landing from 'pages/Landing';
 import SignUp from 'pages/SignUp';
 import SignIn from 'pages/SignIn';
 import ToDo from 'pages/ToDo';
-import ProtectedRoute from 'utils/ProtectRoute';
 
 const Router = createBrowserRouter([
   {
