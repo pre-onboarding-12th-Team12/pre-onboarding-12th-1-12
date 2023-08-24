@@ -29,11 +29,8 @@ const SignUp = () => {
   const handleOnSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const { statusCode, message }: SignUpData = await PostSignUp(form);
-
-    if (statusCode) {
-      alert(message);
-    } else {
-      alert('회원가입되었습니다.');
+    alert(message);
+    if (statusCode === 200) {
       navigate('/signin');
     }
   };
