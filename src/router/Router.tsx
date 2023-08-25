@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from 'App';
+import Landing from 'pages/Landing';
 import SignUp from 'pages/SignUp';
 import SignIn from 'pages/SignIn';
 import ToDo from 'pages/ToDo';
@@ -11,7 +12,7 @@ const Router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: 'Landing',
+        element: <Landing />,
       },
       {
         path: '/signin',
@@ -22,7 +23,7 @@ const Router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: 'todo',
+        path: '/todo',
         element: <ToDo />,
       },
     ],

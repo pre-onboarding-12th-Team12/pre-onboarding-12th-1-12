@@ -30,13 +30,10 @@ const SignIn = () => {
     e.preventDefault();
     const data: Login = await PostSignIn(form);
     const token = data.access_token as string;
-
-    if (token) {
+    if (token !== '') {
       alert('로그인되었습니다.');
-
       localStorage.setItem('token', token);
       navigate('/todo');
-      window.location.reload();
     } else {
       alert('잘못된 로그인 정보입니다.');
     }

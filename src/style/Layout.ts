@@ -1,6 +1,6 @@
 import { styled, css } from 'styled-components';
 
-const CommonStyle = css`
+export const CommonStyle = css`
   width: 500px;
   position: absolute;
   top: 50%;
