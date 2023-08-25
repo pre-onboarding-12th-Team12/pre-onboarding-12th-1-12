@@ -118,7 +118,7 @@ const ToDoTask: React.FC<TodoTaskProps> = ({
             <span>{defaultTodo}</span>
           )}
         </div>
-        <div>
+        <ButtonLayout>
           {isModify ? (
             <>
               <RedButton
@@ -154,7 +154,7 @@ const ToDoTask: React.FC<TodoTaskProps> = ({
               </RedButton>
             </>
           )}
-        </div>
+        </ButtonLayout>
       </TaskLi>
     </>
   );
@@ -165,7 +165,7 @@ export default ToDoTask;
 const TaskLi = styled.li`
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
   div:first-child {
     margin-right: 10px;
   }
@@ -235,4 +235,10 @@ const TaskModifyInput = styled.input`
       outline: 0;
     }
   }
+`;
+
+const ButtonLayout = styled.div`
+  margin-right: 20px;
+  display: flex;
+  gap: 5px;
 `;
