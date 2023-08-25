@@ -4,7 +4,7 @@ import { AuthForm } from '../types';
 import useValidation from '../hooks/Vaildation';
 import { css, styled } from 'styled-components';
 import { PostSignUp } from '../api/requests';
-import { Layout } from '../style/Layout';
+import { Layout as Wrapper } from '../style/Layout';
 import { Title } from '../style/Common';
 interface SignUpData {
   statusCode?: number;
@@ -17,6 +17,7 @@ const SignUp = () => {
     email: '',
     password: '',
   });
+
   const { isValid } = useValidation(form);
   const isToken = window.localStorage.getItem('token');
 
@@ -36,7 +37,7 @@ const SignUp = () => {
   };
 
   return (
-    <Layout>
+    <Wrapper>
       <Title>회원가입</Title>
       <form className="form form__login">
         <Input
@@ -63,19 +64,11 @@ const SignUp = () => {
           회원가입
         </Button>
       </form>
-    </Layout>
+    </Wrapper>
   );
 };
 
 export default SignUp;
-
-const Wrapper = styled.div`
-  ${Layout}
-
-  button {
-    margin-top: 30px;
-  }
-`;
 
 const Input = styled.input`
   display: block;
