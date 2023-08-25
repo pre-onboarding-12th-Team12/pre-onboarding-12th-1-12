@@ -141,13 +141,31 @@ npm run start
 ## 📂 폴더 구조
 ```
 project-root/
-├── src/
-│   ├── components/
-│   ├── styles/
-│   └── index.js
-├── public/
+│
+├── public/ # 정적 파일들
+│ ├── index.html
+│ └── manifest.json
+│
+├── src/ # 소스 코드
+│ ├── components/    # 재사용 가능한 컴포넌트들
+│ ├── hooks/         # custom hooks
+│ ├── api/           # api 함수들
+│ ├── pages/         # 페이지 또는 뷰 컴포넌트
+│ ├── router/        # 라우팅 관련 설정 
+│ ├── App.tsx        # App 컴포넌트
+│ ├── index.tsx      # 진입점 파일
+│ ├── types.ts       # TypeScript 타입 정의
+│ └── GlobalStyle.ts # 전역 스타일 설정파일
+│
+├── .gitignore
+├── .eslintignore
+├── .eslintrc
+├── .prettierrc.js
 ├── package.json
+├── tsconfig.json 
 └── README.md
+
+
 ```
 ## 🛠️ 기술 스택
 <img src="https://img.shields.io/badge/Typescript-blue?style=square"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/Axios-56347C?style=flat-square&logo=Axios&logoColor=white"/> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=flat-square&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon Amplify-569A31?style=flat-square&logo=Amazon S3&logoColor=white"/>
@@ -158,10 +176,6 @@ project-root/
 
 ### Assignment 1 유효성 검사
 
-- 회원가입과 로그인 페이지에 이메일과 비밀번호의 유효성 검사기능을 구현해주세요
-    - 이메일 조건: `@` 포함
-    - 비밀번호 조건: 8자 이상
-- 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
 
 | 이름 | 의견 |
 | --- | --- |
@@ -187,10 +201,7 @@ project-root/
 
 ### Assignment 2 & 3 페이지 이동/ jwt 관리
 
-- 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
-- 로그인 페이지에서 버튼을 클릭 시, 로그인을 진행하고 로그인이 정상적으로 완료되었을 시 `/todo` 경로로 이동해주세요
-    - 로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
-    - 응답받은 JWT는 로컬 스토리지에 저장해주세요
+
 
 | 이름 | 의견 |
 | --- | --- |
@@ -214,9 +225,6 @@ project-root/
 
 ### Assignment 4 리다이렉트
 
-- 로그인 여부에 따른 리다이렉트 처리를 구현해주세요
-    - 로컬 스토리지에 토큰이 있는 상태로 `/signin` 또는 `/signup` 페이지에 접속한다면 `/todo` 경로로 리다이렉트 시켜주세요
-    - 로컬 스토리지에 토큰이 없는 상태로 `/todo`페이지에 접속한다면 `/signin` 경로로 리다이렉트 시켜주세요
 
 | 이름 | 의견 |
 | --- | --- |
@@ -239,18 +247,16 @@ project-root/
 
 ### Assignment 5 투두 리스트 목록과 체크박스
 
-- `/todo`경로에 접속하면 투두 리스트의 목록을 볼 수 있도록 해주세요
-- 목록에서는 TODO의 내용과 완료 여부가 표시되어야 합니다.
-- TODO의 완료 여부는 `<input type="checkbox" />`를 통해 표현해주세요
 
 | 이름 | 의견 |
 | --- | --- |
-| 김진현 | - 투두리스트는 경로에 접속 할 때마다 렌더링 되어야 하므로, useEffect에서 get요청 작성, 객체는 배열형태로 state에 저장 <br>- 투두의 완료 여부는 state의 완료여부 값을 tag defaultChecked 속성에 바로 부여해준다. |
+| 김진현 | - 투두리스트는 경로에 접속 할 때마다 렌더링 되어야 하므로, useEffect에서 get요청 작성, 객체는 배열형태로 state에 저장  <br> - 투두의 완료 여부는 state의 완료여부 값을 tag안의 defaultChecked 속성에 바로 부여해준다. |
 | 박정민 | 처음 페이지 접속시 useEffect로 데이터를 받아 map을 이용하여 렌더링 |
 | 윤다솜 | 서버에서 패칭한 투두리스트를 map을 이용하여 뿌려준다. |
 | 이기석 | -todo기능 관련  최상위 컴포넌트에서 useReducer를 사용하여 todos를 자식 컴포넌트에게 전달  |
 | 이도하 | - useEffect로 경로 접속시 get 요청 후 state에 저장 하여 isCompleted를 기준으로 state안의 data를 sort()를 사용하여 정렬 후 map() 메소드로 렌더링  |
 | 안동현 | useEffeact 를 사용하여 todo 페이지 마운트 시점에 리스트 데이터를 받아서 map을 이용하여 랜더링 |
+
 
 ### Best Practice
 
@@ -262,9 +268,7 @@ project-root/
 
 ### Assignment 6 투두 리스트 추가
 
-- 리스트 페이지에 새로운 TODO를 입력할 수 있는 input과 추가 button을 만들어주세요
-- 추가 button을 클릭하면 입력 input의 내용이 새로운 TODO로 추가되도록 해주세요
-- TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다
+
 
 | 이름 | 의견 |
 | --- | --- |
@@ -286,9 +290,6 @@ project-root/
 
 ### Assignment 7&10 투두리스트,체크박스 수정
 
-- TODO의 체크박스를 통해 완료 여부를 수정할 수 있도록 해주세요.
-- 투두 리스트의 수정 기능을 구현해주세요
-
 | 이름 | 의견 |
 | --- | --- |
 | 김진현 | - 수정모드: 수정여부를 useState를 사용하여 클릭된 투두의 id를 이용해 삼항연산자로 표현<br>- 체크박스 클릭시 update 요청 후 업데이트. |
@@ -306,10 +307,6 @@ project-root/
 ---
 
 ### Assignment 8 & Assignment 9 투두리스트 삭제
-
-- TODO 우측에 수정버튼과 삭제 버튼을 만들어주세요
-- 투두 리스트의 삭제 기능을 구현해주세요
-    - 투두 리스트의 TODO 우측의 삭제버튼을 누르면 해당 아이템이 삭제되도록 해주세요
 
 | 이름 | 의견 |
 | --- | --- |
