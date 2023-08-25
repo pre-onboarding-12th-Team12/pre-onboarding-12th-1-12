@@ -5,7 +5,7 @@ const SignOut = () => {
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    localStorage.removeItem('token');
+    window.localStorage.removeItem('token');
     navigate('/');
   };
 
