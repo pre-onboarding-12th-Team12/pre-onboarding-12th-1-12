@@ -51,7 +51,7 @@
 - [👑 Best Practice 도출 과정](#-best-practice)
 
 ## 🔗 배포 링크
-https://main.d1dfbvng6pnql9.amplifyapp.com/%EB%8B%A4
+https://main.d1dfbvng6pnql9.amplifyapp.com/
 
 ## ⚙️ 실행 방법
 ```
