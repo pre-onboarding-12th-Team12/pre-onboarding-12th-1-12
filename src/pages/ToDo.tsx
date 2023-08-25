@@ -1,10 +1,18 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ToDoList from 'components/todo/ToDoList';
-import SignOut from 'components/SignOut';
+import SignOut from 'components/Signout';
 import { Title } from 'style/Common';
 import { Wrapper } from 'style/Wrapper';
 
 const ToDo = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (!token) return navigate('/signin');
+  }, [navigate, token]);
+
   return (
     <>
       <SignOut />

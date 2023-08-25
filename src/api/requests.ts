@@ -1,5 +1,6 @@
 import { http } from './http';
 import { TodoType } from 'types';
+import axios from 'axios';
 
 export const PostSignUp = async (form: object) => {
   try {
@@ -39,4 +40,61 @@ export const CreateTodo = async (todo: object) => {
       Authorization: `Bearer ${token}`,
     },
   });
+};
+
+export const UpdateTodo = async ({
+  id,
+  todo,
+  updateIsCompleted,
+}: {
+  id: number;
+  todo: string;
+  updateIsCompleted: boolean;
+}) => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('토큰 없음');
+
+    const header = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const payload = {
+      todo,
+      isCompleted: updateIsCompleted,
+    };
+
+    await axios.put(
+      `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+      payload,
+      header
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const DeleteTodo = async (id: number) => {
+  try {
+    const token = localStorage.getItem('token');
+
+    if (!token) throw new Error('토큰 없음');
+
+    const header = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    await axios.delete(
+      `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+      header
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
