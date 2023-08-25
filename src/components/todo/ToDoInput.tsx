@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CreateTodo } from 'api/requests';
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 type ToDoProps = {
   fetchData: () => Promise<void>;
@@ -8,7 +8,6 @@ type ToDoProps = {
 
 const ToDoInput = ({ fetchData }: ToDoProps) => {
   const [todo, setTodo] = useState<{ todo: string }>({ todo: '' });
-
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo({ todo: e.target.value });
   };
@@ -17,6 +16,7 @@ const ToDoInput = ({ fetchData }: ToDoProps) => {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
+    if (!todo.todo) return;
     setTodo({ todo: '' });
     await CreateTodo(todo);
     fetchData().catch(error => {
@@ -77,11 +77,4 @@ const AddBtn = styled.button`
   border-radius: 20px;
   flex-shrink: 0;
   font-size: 16px;
-
-  ${props =>
-    props.disabled &&
-    css`
-      background-color: var(--disabled);
-      cursor: default;
-    `}
 `;
