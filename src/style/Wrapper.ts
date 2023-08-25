@@ -13,6 +13,6 @@ export const CommonStyle = css`
   margin: 0 auto;
 `;
 
-export const Layout = styled.div`
+export const Wrapper = styled.div`
   ${CommonStyle}
 `;
