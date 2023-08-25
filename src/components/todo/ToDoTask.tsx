@@ -6,6 +6,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { UpdateTodo } from 'api/requests';
 import { TodoTaskProps, TodoType } from 'types';
 import { sortedTodo } from 'utils/sortedTodo';
+import checked from '../../images/checked.png';
 
 const ToDoTask: React.FC<TodoTaskProps> = ({
   todos,
@@ -207,9 +208,7 @@ const CheckBox = styled.input`
 
   &:checked {
     border-color: var(--primary);
-    background: var(--primary)
-      url(${'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAWCAYAAADTlvzyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMS1jMDAwIDc5LmIwZjhiZTkwLCAyMDIxLzEyLzE1LTIxOjI1OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjMuMiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MEQ5NDM3QkYxRjAwMTFFRDg3NkZEMzA5MDhEOUEwMkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MEQ5NDM3QzAxRjAwMTFFRDg3NkZEMzA5MDhEOUEwMkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowRDk0MzdCRDFGMDAxMUVEODc2RkQzMDkwOEQ5QTAyRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowRDk0MzdCRTFGMDAxMUVEODc2RkQzMDkwOEQ5QTAyRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoviZg4AAAFlSURBVHjaYvz//z8DHUAEELsDcQoLHSxzAuKFQMwGxOyMNPahORDvAmI+mAAtLVQB4mNALIok9p+JRpbJAPFeNMtAoJwB5EMqY34gvvQfE7SDQ5PKlnEB8Qksli0AYkZ0CxkptIwFiDdisQwkxgxTB1PMBsRrgDibTMtAjl2CxbLDUF8zIFvIhuSyf0CcT4aFXVgsuwSNTwZ0C9djUVxCgmUVWPTfAWIZbOpBhCcQf8eiqYIIyxKgoYIMXgGxCi49MIY7EH/FYmktHsv8gPgPmvoPQGyCz5HIHGccljZj0WiLRe1PIHYiFCroAnZA/BlXpoViXahPkAHIp8HExDk2QRsg/ojF0m5o3DzGIpdJbCLDJWGJxRf/cfi+hpQshE/SFIjf/8cPppGaZwkpMALiNzgsW4JcZFHLQhA2AOLXaJY9BGJJcopBYhXqAPFLqGX3gViB3EKeFMWaQHwUiOUoqVUAAgwA81IixLuQjCUAAAAASUVORK5CYII='})
-      /* url(${'../../images/checked.png'})  */ no-repeat center center / 12px
+    background: var(--primary) url(${checked}) no-repeat center center / 12px
       auto;
   }
 `;
