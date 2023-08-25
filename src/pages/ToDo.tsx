@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ToDoList from 'components/todo/ToDoList';
-import SignOut from 'components/Signout';
+import SignOut from 'components/SignOut';
 import { Title } from 'style/Common';
 import { Wrapper } from 'style/Wrapper';
 
