@@ -1,6 +1,6 @@
 import { styled, css } from 'styled-components';
 
-const CommonStyle = css`
+export const CommonStyle = css`
   width: 500px;
   position: absolute;
   top: 50%;
@@ -13,6 +13,6 @@ const CommonStyle = css`
   margin: 0 auto;
 `;
 
-export const Layout = styled.div`
+export const Wrapper = styled.div`
   ${CommonStyle}
 `;

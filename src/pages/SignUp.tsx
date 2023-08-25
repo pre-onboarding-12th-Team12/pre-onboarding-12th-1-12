@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthForm } from '../types';
+import { AuthForm } from 'types';
 import useValidation from '../hooks/Vaildation';
 import { css, styled } from 'styled-components';
 import { PostSignUp } from '../api/requests';
-import { Layout } from '../style/Layout';
+import { Wrapper } from '../style/Wrapper';
 import { Title } from '../style/Common';
 interface SignUpData {
   statusCode?: number;
@@ -17,6 +17,7 @@ const SignUp = () => {
     email: '',
     password: '',
   });
+
   const { isValid } = useValidation(form);
   const isToken = window.localStorage.getItem('token');
 
@@ -29,17 +30,14 @@ const SignUp = () => {
   const handleOnSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const { statusCode, message }: SignUpData = await PostSignUp(form);
-
-    if (statusCode) {
-      alert(message);
-    } else {
-      alert('회원가입되었습니다.');
+    alert(message);
+    if (statusCode === 200) {
       navigate('/signin');
     }
   };
 
   return (
-    <Layout>
+    <Wrapper>
       <Title>회원가입</Title>
       <form className="form form__login">
         <Input
@@ -66,19 +64,11 @@ const SignUp = () => {
           회원가입
         </Button>
       </form>
-    </Layout>
+    </Wrapper>
   );
 };
 
 export default SignUp;
-
-const Wrapper = styled.div`
-  ${Layout}
-
-  button {
-    margin-top: 30px;
-  }
-`;
 
 const Input = styled.input`
   display: block;

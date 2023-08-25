@@ -4,7 +4,7 @@ import { AuthForm } from '../types';
 import useValidation from '../hooks/Vaildation';
 import { css, styled } from 'styled-components';
 import { PostSignIn } from '../api/requests';
-import { Layout } from '../style/Layout';
+import { Wrapper } from '../style/Wrapper';
 import { Title } from '../style/Common';
 
 interface Login {
@@ -17,6 +17,7 @@ const SignIn = () => {
     email: '',
     password: '',
   });
+
   const { isValid } = useValidation(form);
   const isToken = window.localStorage.getItem('token');
 
@@ -30,20 +31,19 @@ const SignIn = () => {
     e.preventDefault();
     const data: Login = await PostSignIn(form);
     const token = data.access_token as string;
+    const hasToken = token !== '';
 
-    if (token) {
+    if (hasToken) {
       alert('로그인되었습니다.');
-
       localStorage.setItem('token', token);
       navigate('/todo');
-      window.location.reload();
     } else {
       alert('잘못된 로그인 정보입니다.');
     }
   };
 
   return (
-    <Layout>
+    <Wrapper>
       <Title>로그인</Title>
       <form className="form form__login">
         <Input
@@ -72,19 +72,11 @@ const SignIn = () => {
           로그인
         </Button>
       </form>
-    </Layout>
+    </Wrapper>
   );
 };
 
 export default SignIn;
-
-const Wrapper = styled.div`
-  ${Layout}
-
-  button {
-    margin-top: 30px;
-  }
-`;
 
 const Input = styled.input`
   display: block;
