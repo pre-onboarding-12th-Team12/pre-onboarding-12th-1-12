@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
-import { styled } from 'styled-components';
+import { useEffect, useState, useCallback } from 'react';
 import ToDoInput from './ToDoInput';
+import ToDoBoard from './ToDoBoard';
 import { GetTodo } from 'api/requests';
 import { TodoType } from 'types';
+import { DeleteTodo } from '../../api/requests';
+import { sortedTodo } from 'utils/sortedTodo';
 
 const ToDoBox = () => {
   const [todoData, setTodoData] = useState<TodoType[]>([]);
 
   const fetchData = async () => {
     const todos = await GetTodo();
-    setTodoData(todos);
+    setTodoData(sortedTodo(todos));
   };
 
   useEffect(() => {
@@ -18,42 +20,46 @@ const ToDoBox = () => {
     });
   }, [GetTodo]);
 
-  const sortedData = todoData?.slice().sort((a, b) => {
-    if (a.isCompleted === b.isCompleted) {
-      return 0;
-    } else if (a.isCompleted && !b.isCompleted) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  // todo sorting
+  const handleSortedTodo = useCallback(
+    (todoData: TodoType[], id: number) => {
+      const sortedTodoData = todoData.map(todo =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      );
+      setTodoData(sortedTodo(sortedTodoData));
+    },
+    [todoData]
+  );
+
+  // todo 삭제
+  const handleSubmitDeleteTodo = useCallback(
+    async (id: number): Promise<void> => {
+      try {
+        await DeleteTodo(id);
+
+        const updatedTodoData = [...todoData].filter(todo => todo.id !== id);
+        setTodoData(updatedTodoData);
+
+        return;
+      } catch (error) {
+        console.error(error);
+
+        return;
+      }
+    },
+    [todoData]
+  );
 
   return (
     <>
       <ToDoInput fetchData={fetchData} />
-      <ToDoList>
-        {sortedData?.map(todo => <div key={todo.id}>{todo.todo}</div>)}
-      </ToDoList>
+      <ToDoBoard
+        todos={todoData}
+        handleDeleteTodo={handleSubmitDeleteTodo}
+        handleSortedTodo={handleSortedTodo}
+      />
     </>
   );
 };
 
 export default ToDoBox;
-
-const ToDoList = styled.ul`
-  max-height: 415px;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: 3px;
-  box-sizing: border-box;
-
-  &::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    height: 30%;
-    background: var(--primary);
-    border-radius: 10px;
-  }
-`;
