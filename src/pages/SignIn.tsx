@@ -35,7 +35,7 @@ const SignIn = () => {
 
     if (hasToken) {
       alert('로그인되었습니다.');
-      localStorage.setItem('token', token);
+      window.localStorage.setItem('token', token);
       navigate('/todo');
     } else {
       alert('잘못된 로그인 정보입니다.');
