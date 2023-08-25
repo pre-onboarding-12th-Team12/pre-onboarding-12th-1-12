@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CreateTodo } from 'api/requests';
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 type ToDoProps = {
   fetchData: () => Promise<void>;
