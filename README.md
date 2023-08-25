@@ -58,6 +58,8 @@ https://main.d1dfbvng6pnql9.amplifyapp.com/
 npm install
 npm run start
 ```
+- git clone후, 위의 명령어를 순서대로 실행하면 프로젝트를 이용하실 수 있습니다.
+
 ## ⌛ 진행 과정
 ### 과제 스케줄링 방식 및 회의
  - day1 : 각자 formatting 및 linter 룰, 코드 컨벤션 및 개인 과제 코드 리뷰 준비
@@ -184,7 +186,7 @@ project-root/
 | 윤다솜 | - 중복되는 validate 코드를 custom hook을 사용하여 코드 중복 해결 |
 | 이기석 | - 변경 가능성을 고려하여 validate 코드를 함수로 만들고 custom hook 에서 import |
 | 이도하 | - onChange 이벤트 발생시 input의 name을 조건문으로 확인하여 email, password 유효성검사 <br>- isValid state로 false 일경우 disabled |
-| 안동현 |  |
+| 안동현 | - 유효성 검사 로직을 validator 로 분리, onChange 이벤트로 해당 함수 호출하여 유효성 검사. |
 
 ### Best Practice
 
@@ -210,7 +212,7 @@ project-root/
 | 윤다솜 | - react-router-dom을 이용하여 페이지 이동 <br>- 로그인 성공시 토큰을 localStorage에 저장하여 전역적으로 관리 |
 | 이기석 | - 로그인 / 회원가입 성공시 useNavigate 사용하여 페이지 이동<br>- 로그인 성공시 토튼 localStorage에 저장<br>- localStorage를 contextAPI 전역변수에 저장 및 관리  |
 | 이도하 | - 로그인, 회원가입 성공시 useNavigate로 /signin과 /todo로 이동<br>- 로그인 post 요청 성공시 localStorage에 JWT저장 |
-| 안동현 |  |
+| 안동현 | - 로그인/회원가입 성공시 navigate훅으로 페이지 이동, 로그인 성공 시 localStorage에 토큰 저장 |
 
 ### Best Practice
 
@@ -233,7 +235,7 @@ project-root/
 | 윤다솜 | - useEffect의 의존성 배열에 token을 두어, 리다이렉트 처리 |
 | 이기석 | - 리다이렉트 정책 변경시 한 곳에서 관리하고 변경할 수 있도록 App.tsx에서 표현<br>- 토큰 유무 확인 후  라우팅 분기 처리 |
 | 이도하 | - useEffect에서 token을 의존하여 token 확인 후 리다이렉트 처리 |
-| 안동현 |  |
+| 안동현 | - useEffect 훅에서 token 확인해서 리다이렉트 처리 |
 
 ### Best Practice
 
