@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
     --light: #93a8f6;
     --secondary: #424551;
     --delete: #EB5757;
+    --update:#84e92a;
   }
 
   body {
