@@ -155,3 +155,171 @@ project-root/
 ## 기능 구현
 
 ## 👑 Best Practice
+
+### Assignment 1 유효성 검사
+
+- 회원가입과 로그인 페이지에 이메일과 비밀번호의 유효성 검사기능을 구현해주세요
+    - 이메일 조건: `@` 포함
+    - 비밀번호 조건: 8자 이상
+- 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
+
+| 이름 | 의견 |
+| --- | --- |
+| 김진현 | - regExp=/@/g(정규식), string.length 두가지 조건으로 삼항연산자를 통해, disabled속성 설정 |
+| 박정민 | - 유효성 검사에 onChange 속성 사용하여 함수를 통해 실시간으로 검사<br>- disabled: 삼항연산자를 통해 바로 true / false 변경 |
+| 윤다솜 | - 중복되는 validate 코드를 custom hook을 사용하여 코드 중복 해결 |
+| 이기석 | - 변경 가능성을 고려하여 validate 코드를 함수로 만들고 custom hook 에서 import |
+| 이도하 | - onChange 이벤트 발생시 input의 name을 조건문으로 확인하여 email, password 유효성검사 <br>- isValid state로 false 일경우 disabled |
+| 안동현 |  |
+
+### Best Practice
+
+- 유효성 검사 → 이메일: includes(’@’) 사용 / 비밀번호: length > 7 사용
+- 유효성 검사는 hooks로 따로 관리
+- disabled → useState(object)로 삼항 연산자를 통해 속성 true / false
+
+### 선정 이유
+
+- 유효성 검사 조건이 복잡하다면 정규식을 사용하는 것이 정확하지만 이번 과제의 경우 조건이 간단하여 더 이해하기 쉬운 includes와 length를 사용하였습니다.
+- 검사 조건은 언제든 변경 될 수 있기 때문에 따로 관리하는 것이 용이하다고 생각하여 선정하였습니다.
+
+---
+
+### Assignment 2 & 3 페이지 이동/ jwt 관리
+
+- 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
+- 로그인 페이지에서 버튼을 클릭 시, 로그인을 진행하고 로그인이 정상적으로 완료되었을 시 `/todo` 경로로 이동해주세요
+    - 로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
+    - 응답받은 JWT는 로컬 스토리지에 저장해주세요
+
+| 이름 | 의견 |
+| --- | --- |
+| 김진현 |  - 로그인 및 회원가입 버튼 이벤트핸들러에 로그인 / 회원가입 성공시 useNavigate 사용하여 페이지 이동 <br>- 로그인 성공시 토튼 localStorage에 저장 |
+| 박정민 | - 로그인 / 회원가입 성공시 useNavigate 사용하여 페이지 이동 <br>- 로그인 성공시 토튼 localStorage에 저장 |
+| 윤다솜 | - react-router-dom을 이용하여 페이지 이동 <br>- 로그인 성공시 토큰을 localStorage에 저장하여 전역적으로 관리 |
+| 이기석 | - 로그인 / 회원가입 성공시 useNavigate 사용하여 페이지 이동<br>- 로그인 성공시 토튼 localStorage에 저장<br>- localStorage를 contextAPI 전역변수에 저장 및 관리  |
+| 이도하 | - 로그인, 회원가입 성공시 useNavigate로 /signin과 /todo로 이동<br>- 로그인 post 요청 성공시 localStorage에 JWT저장 |
+| 안동현 |  |
+
+### Best Practice
+
+- 로그인 / 회원가입 성공시 localStorage에 토큰 저장 후 UseNavigate 사용하여 페이지 이동
+- 토큰 저장, 페이지 이동 모두 한 함수로 관리
+
+### 선정 이유
+
+- 토큰 저장과 페이지 이동이 따로 작동하는 것이 아니라 한번에 작동 하는 것이 더 좋을 것 같아 선정하였습니다.
+
+---
+
+### Assignment 4 리다이렉트
+
+- 로그인 여부에 따른 리다이렉트 처리를 구현해주세요
+    - 로컬 스토리지에 토큰이 있는 상태로 `/signin` 또는 `/signup` 페이지에 접속한다면 `/todo` 경로로 리다이렉트 시켜주세요
+    - 로컬 스토리지에 토큰이 없는 상태로 `/todo`페이지에 접속한다면 `/signin` 경로로 리다이렉트 시켜주세요
+
+| 이름 | 의견 |
+| --- | --- |
+| 김진현 | - useEffect를 사용하여, 페이지 렌더링시 token확인 함수를 이용해  토큰 여부 확인 뒤 각 경로로 리다이렉트처리 |
+| 박정민 | - useEffect를 사용하여 페이지 렌더링 시 바로 토큰 여부 확인 후 리다이렉트 |
+| 윤다솜 | - useEffect의 의존성 배열에 token을 두어, 리다이렉트 처리 |
+| 이기석 | - 리다이렉트 정책 변경시 한 곳에서 관리하고 변경할 수 있도록 App.tsx에서 표현<br>- 토큰 유무 확인 후  라우팅 분기 처리 |
+| 이도하 | - useEffect에서 token을 의존하여 token 확인 후 리다이렉트 처리 |
+| 안동현 |  |
+
+### Best Practice
+
+- useEffect 사용하여 페이지 렌더링 시 localStorage에 저장된 token 유무에 따른 라우팅 처리
+
+### 선정 이유
+
+- useEffect로 관리하는 것이 좀 더 용이하다고 생각하여 선정하게 되었습니다.
+
+---
+
+### Assignment 5 투두 리스트 목록과 체크박스
+
+- `/todo`경로에 접속하면 투두 리스트의 목록을 볼 수 있도록 해주세요
+- 목록에서는 TODO의 내용과 완료 여부가 표시되어야 합니다.
+- TODO의 완료 여부는 `<input type="checkbox" />`를 통해 표현해주세요
+
+| 이름 | 의견 |
+| --- | --- |
+| 김진현 | - 투두리스트는 경로에 접속 할 때마다 렌더링 되어야 하므로, useEffect에서 get요청 작성, 객체는 배열형태로 state에 저장 <br>- 투두의 완료 여부는 state의 완료여부 값을 tag defaultChecked 속성에 바로 부여해준다. |
+| 박정민 | 처음 페이지 접속시 useEffect로 데이터를 받아 map을 이용하여 렌더링 |
+| 윤다솜 | 서버에서 패칭한 투두리스트를 map을 이용하여 뿌려준다. |
+| 이기석 | -todo기능 관련  최상위 컴포넌트에서 useReducer를 사용하여 todos를 자식 컴포넌트에게 전달  |
+| 이도하 | - useEffect로 경로 접속시 get 요청 후 state에 저장 하여 isCompleted를 기준으로 state안의 data를 sort()를 사용하여 정렬 후 map() 메소드로 렌더링  |
+| 안동현 | useEffeact 를 사용하여 todo 페이지 마운트 시점에 리스트 데이터를 받아서 map을 이용하여 랜더링 |
+
+### Best Practice
+
+- 데이터를 가져오는 함수 axios사용, api 폴더의 requests에서 관리
+- todo로 접속시 useEffect로 GetTodos 함수를 실행, 데이터 요청 후 state에 저장
+- 저장된 data를 sort()메소드로 정렬 하여 완료된 todo는 IsCompleted로 비교해 밑으로 내려가게 정렬 후 map으로 렌더링
+
+---
+
+### Assignment 6 투두 리스트 추가
+
+- 리스트 페이지에 새로운 TODO를 입력할 수 있는 input과 추가 button을 만들어주세요
+- 추가 button을 클릭하면 입력 input의 내용이 새로운 TODO로 추가되도록 해주세요
+- TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다
+
+| 이름 | 의견 |
+| --- | --- |
+| 김진현 | - button 클릭시 post요청, 빈값이면(todo.length===0)일때 입력못하게함<br>- 동시에 get요청해서 저장한 투두리스트에 추가 ex)setTodolist([...todolist,result])<br>- useEffect를 사용하여 렌더링시마다 get요청  |
+| 박정민 | 버튼 클릭 시 post 요청 후 getTodo를 이용하여 업데이트 |
+| 윤다솜 | handleTodoCreate로 추가 버튼 클릭 이벤트를 핸들링, 핸들러 내부에서는 createTodo api를 호출하고, 응답 받은 데이터 setTodos를 호출하여 Todos 상태값 변경 |
+| 이기석 | - 아이템을 추가하는 폼을 컴포넌트로 분리<br>- 성공적으로 추가되면 의 dispatch 함수 호출 |
+| 이도하 | - input, button 컴포넌트 분리<br>- input handleInputChange함수로 onChange 이벤트 핸들링, setState에 input value 저장<br>- button onClick 이벤트 handleAddClick이벤트 핸들링, 이벤트 발생시 getTodo 함수 호출 하여 todolist 업데이트  |
+| 안동현 | 버튼 클릭시 입력된 값을 post 후 리스트 상태 값 변경 |
+
+### Best Practice
+
+- toDoInput로 form 자체를 분리
+- enter를 키보드 입력시 submit 이벤트 발생하기 위해 form 태그로 작성
+- 추가 버튼을 클릭시 submit 이벤트 발생, form에서 handleSubmit 이벤트 핸들링
+- post 요청 성공시 setTodo setstate에 할당
+
+---
+
+### Assignment 7&10 투두리스트,체크박스 수정
+
+- TODO의 체크박스를 통해 완료 여부를 수정할 수 있도록 해주세요.
+- 투두 리스트의 수정 기능을 구현해주세요
+
+| 이름 | 의견 |
+| --- | --- |
+| 김진현 | - 수정모드: 수정여부를 useState를 사용하여 클릭된 투두의 id를 이용해 삼항연산자로 표현<br>- 체크박스 클릭시 update 요청 후 업데이트. |
+| 박정민 | - 수정모드: useState를 사용하여 상태 값으로 수정 여부 변경 / if문을 통해 return 분리<br>- 체크 박스 onChange로 상태가 변화하면 함수를 통해 update요청 후 업데이트 |
+| 윤다솜 | - handleTodoCheckboxChange로 Checkbox 이벤트 핸들링, 핸들러 내부에서 는 updateTodo api 호출하고 응답 데이터를 인자로setTodos를 호출하여 Todos 상태 변경<br>- editingTodo 상태 값을 두어 편집 중 여부를 판단하고, editingTodoTitle 상태 값을 두어 편집 중인 투두의 제목을 관리한다.수정 시 handleTodoEditingSubmit으로 핸들링, 핸들러 내부에서 updateTodo api<br> -method 호출하여 응답 데이터로 Todos 상태를 변경한다. |
+| 이기석 | - 투두를 수정하는 폼을 컴포넌트로 분리<br>- DOM 변경은 isEditing,setIsEdting state 변수와 활용<br>-  setIsEdting 함수를 서비스 함수에 함께 전달하여 서버에서 OK 응답이 오면 다시 DOM 변경<br>- 체크박스 클릭과 수정 완료 버튼 클릭은 같은 다른 함수를 사용 |
+| 이도하 | - 체크 박스 클릭시 updateTodo 함수 호출<br>- isModify useState로 수정모드의 boolean값을 확인하여 렌더링, 수정모드시 input의 value를 handleNewTodo onChange 이벤트 핸들링, 새로운 입력 값을 제출 버튼 클릭시 updateTodo 함수 호출 put요청 성공 후 getTodo 로 데이터 get요청 |
+| 안동현 | - useState을 사용하여 상태 값으로 수정 여부 변경<br>- 수정완료 버튼을 클릭하면 변경된 내용을 put 요청을 통해 업데이트 요청. 응답 코드에 따라 수정 여부 변경 |
+
+### Best Practice
+
+- 체크박스 클릭시 updateTodo 함수 실행, put 성공시 새로운 데이터 getTodo로 get 요청
+- 수정 버튼 클릭시 input으로 변경되면서 input에 새로운 todo 입력 후 제출시 updateTodo 함수 실행, put 성공시 getTodo로 get 요청
+
+---
+
+### Assignment 8 & Assignment 9 투두리스트 삭제
+
+- TODO 우측에 수정버튼과 삭제 버튼을 만들어주세요
+- 투두 리스트의 삭제 기능을 구현해주세요
+    - 투두 리스트의 TODO 우측의 삭제버튼을 누르면 해당 아이템이 삭제되도록 해주세요
+
+| 이름 | 의견 |
+| --- | --- |
+| 김진현 | 삭제버튼 클릭시 삭제 함수 실행 후 get요청에서 받아온 투두리스트에 filter함수통해서 업데이트 |
+| 박정민 | 삭제 버튼 클릭 시 delete 요청 후 업데이트 (get 요청) |
+| 윤다솜 | handleTodoDelete 핸들러 내부에서 deleteTodo api method 호출, 응답 데이터로 Todos 상태 변경 |
+| 이기석 | -성공적으로 제거되면 dispatch 함수 호출 |
+| 이도하 | - 삭제 버튼 클릭시 deleteTodo 함수 호출, delete 요청 성공시에 getTodo로 get 요청으로 todolist 업데이트 |
+| 안동현 | 삭제 버튼 클릭시 삭제 함수 실행 후, filter메서드를 사용하여 리스트의 값 변경; |
+
+### Best Practice
+
+- 삭제 버튼 클릭시 deleteTodo 실행, delete 요청 성공시 getTodo로 get 요청
