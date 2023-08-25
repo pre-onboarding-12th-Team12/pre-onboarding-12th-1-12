@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Title } from 'style/Common';
-import { CommonStyle } from 'style/Layout';
+import { CommonStyle } from 'style/Wrapper';
 
 const Landing = () => {
   const navigate = useNavigate();

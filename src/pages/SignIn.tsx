@@ -4,7 +4,7 @@ import { AuthForm } from '../types';
 import useValidation from '../hooks/Vaildation';
 import { css, styled } from 'styled-components';
 import { PostSignIn } from '../api/requests';
-import { Layout as Wrapper } from '../style/Layout';
+import { Wrapper } from '../style/Wrapper';
 import { Title } from '../style/Common';
 
 interface Login {
