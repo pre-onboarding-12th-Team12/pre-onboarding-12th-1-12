@@ -122,12 +122,14 @@ const ToDoTask: React.FC<TodoTaskProps> = ({
           {isModify ? (
             <>
               <RedButton
+                data-testid="cancel-button"
                 aria-label="수정하기 취소"
                 onClick={handleClickCancelModify}
               >
                 <MdOutlineCancel />
               </RedButton>
               <GreenButton
+                data-testid="submit-button"
                 aria-label="수정하기 완료"
                 onClick={() => void handleSubmitUpdateTodo()}
               >
@@ -136,10 +138,15 @@ const ToDoTask: React.FC<TodoTaskProps> = ({
             </>
           ) : (
             <>
-              <GreenButton aria-label="수정하기" onClick={handleClickModify}>
+              <GreenButton
+                data-testid="modify-button"
+                aria-label="수정하기"
+                onClick={handleClickModify}
+              >
                 <SlPencil />
               </GreenButton>
               <RedButton
+                data-testid="delete-button"
                 aria-label="삭제하기"
                 onClick={() => void handleDeleteTodo(id || 1)}
               >
